@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo echo
 # Delete old fstab entry from other device.
 sudo sed '/\/data/d' /etc/fstab | sudo tee /etc/fstab
 # Get latest UUID
