@@ -8,10 +8,10 @@
 sudo echo
 sed -e 's/\t\([\+0-9a-zA-Z]*\)[ \t].*/\1/' << EOF | sudo fdisk /dev/xvdc
 	n # new partition
-	p # primary partition
-	1 # partition number 1
+	  # primary partition
+	  # partition number 1
 	  # default - start at beginning of disk 
-      # default - end at end of disk
+          # default - end at end of disk
 	w # write the partition table
 EOF
 echo "REBOOT AND RUN disk_setup_1.sh"
