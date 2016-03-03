@@ -15,11 +15,11 @@ sed -e 's/\t\([\+0-9a-zA-Z]*\)[ \t].*/\1/' << EOF | sudo fdisk /dev/xvdc1
 	w # write the partition table
 EOF
 # partition it to EXT3
-#sudo mkfs -t ext3 /dev/xvdc1
+sudo mkfs -t ext3 /dev/xvdc1
 # Delete old fstab entry from other device.
-#sed '/\/data/d' ./fstab
+sudo sed '/\/data/d' /etc/fstab | sudo tee /etc/fstab
 # Get latest UUID
-#id=$(blkid /dev/xvdc1 -o value -s UUID)
+id=$(blkid /dev/xvdc1 -o value -s UUID)
 #echo $id
 # Add entry for new device.
-#echo "UUID=$id /data           ext3    errors=remount-ro,barrier=0,noatime,nobootwait 0       1" >> /etc/fstab
+echo "UUID=$id /data           ext3    errors=remount-ro,barrier=0,noatime,nobootwait 0       1" | sudo tee --append /etc/fstab
